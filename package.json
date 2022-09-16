@@ -1,0 +1,37 @@
+{
+  "name": "deploy",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "deploy": "./dist/cli.mjs"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts --format esm,cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.7.18",
+    "load-esm-config": "^0.2.0",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "jiti": "^1.15.0",
+    "tsup": "^6.2.3",
+    "unbuild": "^0.8.11"
+  }
+}
