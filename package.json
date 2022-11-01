@@ -1,14 +1,8 @@
 {
-  "name": "deploy",
+  "name": "@very-simple/deploy",
   "version": "0.0.0",
   "description": "",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
