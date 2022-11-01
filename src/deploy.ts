@@ -1,6 +1,6 @@
 import { loadEsmConfig } from 'load-esm-config'
 import { join } from 'node:path'
-import * as pc from 'picocolors'
+import pc from 'picocolors'
 import { sync } from './sync'
 import { DeployConfig } from './types'
 import { ask, getBranch, isGit, logError } from './utils'

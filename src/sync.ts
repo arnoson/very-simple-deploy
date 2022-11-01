@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process'
 import * as os from 'node:os'
-import * as pc from 'picocolors'
+import pc from 'picocolors'
 import { SyncConfig } from './types'
 
 const logData = (data: string) =>

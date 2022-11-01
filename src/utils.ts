@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { stdin as input, stdout as output } from 'node:process'
 import * as readline from 'node:readline'
-import * as pc from 'picocolors'
+import pc from 'picocolors'
 
 export const ask = (question: string): Promise<boolean> =>
   new Promise((resolve) => {
