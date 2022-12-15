@@ -10,6 +10,7 @@ export interface SyncConfig {
   include?: string[]
   includeGlob?: string[]
   parallel?: number
+  dereference?: boolean
   dryRun: boolean
 }
 

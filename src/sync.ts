@@ -24,6 +24,7 @@ export const sync = ({
   include = [],
   includeGlob = [],
   parallel = 10,
+  dereference = true,
   dryRun,
 }: SyncConfig) => {
   const setSettings = Object.entries(settings).map(([k, v]) => `set ${k} ${v}`)
@@ -37,6 +38,7 @@ export const sync = ({
     '--delete',
     `--parallel=${parallel}`,
     '--verbose',
+    dereference && '--dereference',
     dryRun && '--dry-run',
     ...exclude.map((path) => `--exclude ${path}`),
     ...excludeGlob.map((path) => `--exclude-glob ${path}`),
