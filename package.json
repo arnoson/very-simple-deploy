@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "tsup src/index.ts src/cli.ts --format esm,cjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "tsc --noEmit && bumpp"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
+    "bumpp": "^8.2.1",
     "jiti": "^1.15.0",
     "tsup": "^6.2.3",
     "unbuild": "^0.8.11"
