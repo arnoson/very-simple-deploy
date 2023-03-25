@@ -1,4 +1,4 @@
-import { loadEsmConfig } from 'load-esm-config'
+import { loadConfig } from "c12"
 import { join } from 'node:path'
 import pc from 'picocolors'
 import { sync } from './sync'
@@ -6,9 +6,13 @@ import { DeployConfig } from './types'
 import { ask, getBranch, isGit, logError } from './utils'
 
 export const deploy = async () => {
-  const result = await loadEsmConfig<DeployConfig>({ name: 'deploy' })
-  const { config } = result ?? {}
-  if (!config) return logError('No deploy config found.')
+  const { config } = await loadConfig<DeployConfig>({ name: 'deploy', dotenv: true });
+
+  if (!config.host) throw new Error(`No ftp host defined`)
+  if (!config.user) throw new Error(`No ftp user defined`)
+  if (!config.password) throw new Error(`No ftp password defined`)
+  if (!config.source) throw new Error(`No source defined`)
+  if (!config.destination) throw new Error(`No destination defined`)
 
   try {
     const branchInfo = isGit(process.cwd()) ? ` (${await getBranch()})` : ''
