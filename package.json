@@ -1,6 +1,7 @@
 {
   "name": "@very-simple/deploy",
-  "version": "0.0.6",
+  "version": "0.0.4",
+  "packageManager": "pnpm@8.2.0",
   "description": "",
   "type": "module",
   "main": "./dist/index.js",
