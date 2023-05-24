@@ -1,12 +1,14 @@
-import { loadConfig } from "c12"
-import { join } from 'node:path'
+import { loadConfig } from 'c12'
 import pc from 'picocolors'
 import { sync } from './sync'
 import { DeployConfig } from './types'
 import { ask, getBranch, isGit, logError } from './utils'
 
 export const deploy = async () => {
-  const { config } = await loadConfig<DeployConfig>({ name: 'deploy', dotenv: true });
+  const { config } = await loadConfig<DeployConfig>({
+    name: 'deploy',
+    dotenv: true,
+  })
 
   if (!config.host) throw new Error(`No ftp host defined`)
   if (!config.user) throw new Error(`No ftp user defined`)
@@ -15,13 +17,15 @@ export const deploy = async () => {
   if (!config.destination) throw new Error(`No destination defined`)
 
   try {
-    const branchInfo = isGit(process.cwd()) ? ` (${await getBranch()})` : ''
-    const path = join(config.host, config.destination)
-    console.log(
-      `Deploy ${pc.magenta(config.source + branchInfo)} to ${pc.magenta(
-        path
-      )}\n`
-    )
+    const branch = isGit(process.cwd()) && (await getBranch())
+    const sourceInfo = `${config.source} ${branch ? `(${branch})` : ''}`
+
+    const path = config.destination.startsWith('./')
+      ? config.destination.substring(1)
+      : config.destination
+
+    const url = `${config.host}${path}`
+    console.log(`Deploy ${pc.magenta(sourceInfo)} to ${pc.magenta(url)}\n`)
   } catch (e) {
     return logError(e)
   }
