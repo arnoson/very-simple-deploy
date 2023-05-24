@@ -18,7 +18,7 @@ export const sync = ({
   password,
   source,
   destination,
-  settings = { 'ssl:verify-certificate': false, 'ftp:ssl-force': true },
+  settings = {},
   exclude = [],
   excludeGlob = [],
   include = [],
@@ -27,6 +27,12 @@ export const sync = ({
   dereference = true,
   dryRun,
 }: SyncConfig) => {
+  settings = {
+    'ssl:verify-certificate': false,
+    'ftp:ssl-force': true,
+    ...settings,
+  }
+
   const setSettings = Object.entries(settings).map(([k, v]) => `set ${k} ${v}`)
 
   const flags = [
